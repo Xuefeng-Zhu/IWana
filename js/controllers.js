@@ -25,7 +25,6 @@ angular.module('myApp.controllers', ['firebase'])
             $scope.items = $firebase(ref.child("buy")).$asArray();
             $scope.newItem = {};
 
-
             $scope.addItem = function() {
                 $('#buy')
                     .modal('setting', {
@@ -44,6 +43,8 @@ angular.module('myApp.controllers', ['firebase'])
                         }
                     })
                     .modal('show');
+
+
             };
 
             $scope.selectedImage = function(pic) {
@@ -52,10 +53,18 @@ angular.module('myApp.controllers', ['firebase'])
 
             $scope.selectItem = function(item) {
                 $scope.selectedItem = item;
+                var userId = item.user;
+                var userSyn = $firebase(ref.child("user/" + userId));
+                $scope.user = userSyn.$asObject();
 
                 $('.overlay.sidebar').sidebar({
                     overlay: true
                 }).sidebar('toggle');
+
+                $('#userInfo')
+                    .popup({
+                        on: 'click'
+                    });
             };
 
 
@@ -98,6 +107,7 @@ angular.module('myApp.controllers', ['firebase'])
                         }
                     })
                     .modal('show');
+
             };
 
             $scope.selectedImage = function(pic) {
@@ -106,10 +116,18 @@ angular.module('myApp.controllers', ['firebase'])
 
             $scope.selectItem = function(item) {
                 $scope.selectedItem = item;
+                var userId = item.user;
+                var userSyn = $firebase(ref.child("user/" + userId));
+                $scope.user = userSyn.$asObject();
 
                 $('.overlay.sidebar').sidebar({
                     overlay: true
                 }).sidebar('toggle');
+
+                $('#userInfo')
+                    .popup({
+                        on: 'click'
+                });
             };
 
             $scope.$watch("newItem.name", loadImages);
@@ -139,13 +157,13 @@ angular.module('myApp.controllers', ['firebase'])
             })
 
             $scope.saveUser = function() {
-                $scope.user.$save().then(function(){
-                	$scope.success = true;
+                $scope.user.$save().then(function() {
+                    $scope.success = true;
                 });
             }
 
-            $scope.dismissMessage = function(){
-            	$scope.success = false;
+            $scope.dismissMessage = function() {
+                $scope.success = false;
             }
 
         }
