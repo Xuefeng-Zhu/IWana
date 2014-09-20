@@ -9,7 +9,7 @@ angular.module('myApp.services', [])
 .factory('DuckduckImage', ['$http', function($http){
 	return {
 		query: function(item){
-			return $http.get("http://api.duckduckgo.com/?q=ipad&format=json&pretty=1");
+			return $http.get("http://iwana.herokuapp.com/image/" + item);
 		}
 		
 	};

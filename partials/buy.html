@@ -15,7 +15,6 @@
 		</div>
 	</div>
 </div>
-
 <!-- item -->
 <div class="ui four items">
 	<div class="item" ng-repeat="item in items" style="min-height:300px">
@@ -23,14 +22,13 @@
 			<img src="https://duckduckgo.com/i/1a5d2522.png">
 		</div>
 		<div class="content">
-			<div class="meta">$500</div>
+			<div class="meta">{{item.price}}</div>
 			<div class="name">Iphone</div>
 			<p class="description">dsds.</p>
 		</div>
 	</div>
 </div>
 <!-- end of item -->
-
 <!-- I Wana Buy Modal -->
 <div class="ui basic modal" id="buy">
 	<i class="close icon"></i>
@@ -42,7 +40,7 @@
 			<div class="field">
 				<div class="ui left icon input">
 					<i class="gift icon"></i>
-					<input type="text" placeholder="Name the item you want to buy" id="datepicker2" ng-model="newItem.name">
+					<input type="text" placeholder="Name the item you want to buy" id="datepicker2" ng-model="newItem.name" debounce="500">
 				</div>
 			</div>
 			<div class="field">
@@ -58,7 +56,10 @@
 					<textarea class="eventDetails" ng-model="newItem.description"> </textarea>
 				</div>
 				<div class="column">
-					<div class="ui segment" style="height: 12em">
+					<div class="ui segment" style="height: 12em; overflow-y:auto">
+						<div class="ui small images">
+							<img class="ui image" src={{pic}} ng-class="{disabled: pic == selectedPic}" style="cursor: pointer" ng-click="selectedImage(pic)" ng-repeat="pic in pics">
+						</div>
 					</div>
 				</div>
 			</div>
