@@ -21,7 +21,7 @@ angular.module('myApp.controllers', ['firebase'])
     ])
     .controller('BuyCtrl', ["$scope", "$rootScope", "$firebase", "DuckduckImage",
         function($scope, $rootScope, $firebase, DuckduckImage) {
-        	$rootScope.selectedMenu = "buy";
+            $rootScope.selectedMenu = "buy";
             $scope.items = $firebase(ref.child("buy")).$asArray();
             // $scope.items = buy.$asObject();
             $scope.newItem = {};
@@ -31,23 +31,32 @@ angular.module('myApp.controllers', ['firebase'])
                     .modal('setting', {
                         closable: true,
                         onDeny: function() {
-                        	$scope.newItem = {};
+                            $scope.newItem = {};
                         },
-                        onHidden : function() {
-                        	$scope.newItem = {};
+                        onHidden: function() {
+                            $scope.newItem = {};
                         },
                         onApprove: function() {
-                        	$scope.newItem.pic = $scope.selectedPic;
-                        	$scope.items.$add($scope.newItem);
-                        	$scope.newItem = {};
+                            $scope.newItem.pic = $scope.selectedPic;
+                            $scope.items.$add($scope.newItem);
+                            $scope.newItem = {};
                         }
                     })
                     .modal('show');
             };
 
-            $scope.selectedImage = function(pic){
-            	$scope.selectedPic = pic;
-            }
+            $scope.selectedImage = function(pic) {
+                $scope.selectedPic = pic;
+            };
+
+            $scope.selectItem = function(item) {
+                $scope.selectedItem = item;
+
+                $('.overlay.sidebar').sidebar({
+                    overlay: true
+                }).sidebar('toggle');
+            };
+
 
             $scope.$watch("newItem.name", loadImages);
 
@@ -56,9 +65,9 @@ angular.module('myApp.controllers', ['firebase'])
                     var topics = data["RelatedTopics"];
                     $scope.pics = []
                     for (var i in topics) {
-                    	if (topics[i]["Icon"] && $scope.pics.indexOf(topics[i]["Icon"]["URL"])==-1){
-                    		$scope.pics.push(topics[i]["Icon"]["URL"]);
-                    	}
+                        if (topics[i]["Icon"] && $scope.pics.indexOf(topics[i]["Icon"]["URL"]) == -1) {
+                            $scope.pics.push(topics[i]["Icon"]["URL"]);
+                        }
                     }
                     console.log($scope.pics);
                 })
