@@ -1,4 +1,4 @@
-<div class="ui blue segment">
+<div class="fx-speed-1000 ui blue segment">
 	<div class="ui grid">
 		<div class="eight wide column" style="margin: 0">
 			<div class="ui form">
@@ -17,7 +17,7 @@
 </div>
 <!-- item -->
 <div class="ui four items">
-	<div class="item" ng-repeat="item in items | filter: search" style="min-height:250px; max-height:250px" ng-click="selectItem(item)">
+	<div class="fx-fade-up fx-easing-bounce fx-speed-1000 item" ng-repeat="item in items | filter: search" style="min-height:250px; max-height:250px" ng-click="selectItem(item)">
 		<div class="ui small image">
 			<img src="{{item.pic}}" style="height: 150px">
 		</div>

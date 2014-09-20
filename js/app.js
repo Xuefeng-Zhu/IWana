@@ -8,7 +8,8 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'myApp.controllers',
-  'debounce'
+  'debounce',
+  'ngFx'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/buy', {templateUrl: 'partials/buy.html', controller: 'BuyCtrl'});
