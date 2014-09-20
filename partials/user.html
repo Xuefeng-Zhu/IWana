@@ -2,32 +2,34 @@
   <div class="two fields">
     <div class="field">
       <label>First Name</label>
-      <input placeholder="First Name" type="text">
+      <input placeholder="First Name" type="text" ng-model="user.firstName">
     </div>
     <div class="field">
       <label>Last Name</label>
-      <input placeholder="Last Name" type="text">
+      <input placeholder="Last Name" type="text" ng-model="user.lastName">
     </div>
   </div>
+
   <div class="field">
-    <label>Gender</label>
-    <div class="ui fluid selection dropdown">
-      <div class="text">Select</div>
-      <i class="dropdown icon"></i>
-      <input type="hidden" name="gender">
-      <div class="menu">
-        <div class="item" data-value="male">Male</div>
-        <div class="item" data-value="female">Female</div>
-      </div>
-    </div>
+    <label>Email</label>
+    <input placeholder="Email" type="text" ng-model="user.email">
   </div>
+
   <div class="field">
-    <label>Username</label>
-    <input placeholder="Username" type="text">
+    <label>Phone</label>
+    <input placeholder="Phone" type="text" ng-model="user.phone">
   </div>
+
   <div class="field">
-    <label>Password</label>
-    <input type="password">
+    <label>Address</label>
+    <input placeholder="Address" type="text" ng-model="user.address">
   </div>
-  <div class="ui red submit button" style="float: right">Submit</div>
+  <div class="ui red submit button" style="float: right" ng-click="saveUser()">Save</div>
+</div>
+
+<div class="ui success message" ng-show="success">
+  <i class="close icon" ng-click="dismissMessage()"></i>
+  <div class="header">
+    Your Information has been seved!
+  </div>
 </div>

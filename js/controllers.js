@@ -130,9 +130,23 @@ angular.module('myApp.controllers', ['firebase'])
     .controller('UserCtrl', ["$scope", "$rootScope", "$firebase",
         function($scope, $rootScope, $firebase) {
             $rootScope.selectedMenu = "user";
-            var userId = $rootScope.auth.user.id;
-            userSyn = $firebase(ref.child("user/" + userId));
-            $scope.user = userSyn.$asObject();
+            var userId = null;
+            var userSyn = null;
+            $rootScope.$watch("auth.user", function() {
+                userId = $rootScope.auth.user.id;
+                userSyn = $firebase(ref.child("user/" + userId));
+                $scope.user = userSyn.$asObject();
+            })
+
+            $scope.saveUser = function() {
+                $scope.user.$save().then(function(){
+                	$scope.success = true;
+                });
+            }
+
+            $scope.dismissMessage = function(){
+            	$scope.success = false;
+            }
 
         }
     ]);
