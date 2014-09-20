@@ -19,21 +19,20 @@ angular.module('myApp.controllers', ['firebase'])
             //upload user information when first visit and create message listener 
         }
     ])
-    .controller('BuyCtrl', ["$scope", "$rootScope", "$firebase",
-        function($scope, $rootScope, $firebase) {
+    .controller('BuyCtrl', ["$scope", "$rootScope", "$firebase", "DuckduckImage",
+        function($scope, $rootScope, $firebase, DuckduckImage) {
             $scope.items = $firebase(ref.child("buy"));
-
+            console.log(DuckduckImage.query("iphone"))
             $scope.addItem = function() {
                 $('#buy')
                     .modal('setting', {
                         closable: true,
                         onDeny: function() {},
                         onApprove: function() {
-                        	
+
                         }
                     })
                     .modal('show');
-
             }
         }
     ]);
