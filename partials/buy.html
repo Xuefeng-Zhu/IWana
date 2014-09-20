@@ -3,7 +3,7 @@
 		<div class="eight wide column" style="margin: 0">
 			<div class="ui form">
 				<div class="ui icon input">
-					<input type="text" placeholder="Search...">
+					<input type="text" placeholder="Search..." ng-model="search">
 					<i class="search icon"></i>
 				</div>
 			</div>
@@ -17,18 +17,19 @@
 </div>
 <!-- item -->
 <div class="ui four items">
-	<div class="item" ng-repeat="item in items" style="min-height:300px">
+	<div class="item" ng-repeat="item in items | filter: search" style="min-height:250px; max-height:250px">
 		<div class="ui small image">
-			<img src="https://duckduckgo.com/i/1a5d2522.png">
+			<img src="{{item.pic}}" style="height: 150px">
 		</div>
 		<div class="content">
-			<div class="meta">{{item.price}}</div>
-			<div class="name">Iphone</div>
-			<p class="description">dsds.</p>
+			<div class="meta">{{item.price| currency}}</div>
+			<div class="name">{{item.name}}</div>
+			<p class="description">{{item.description}}</p>
 		</div>
 	</div>
 </div>
 <!-- end of item -->
+
 <!-- I Wana Buy Modal -->
 <div class="ui basic modal" id="buy">
 	<i class="close icon"></i>
@@ -79,3 +80,35 @@
 		</div>
 	</div>
 </div>
+<!-- end of modal -->
+
+<!-- sidebar -->
+<div class="ui wide right overlay floating styled sidebar">
+	<h3 class="ui header" style="display:inline">Item Details</h3>
+	<i class="arrow sign right large icon" style="float:right; cursor:pointer" ng-click="closeSidebar()"></i>
+	
+	<div class="ui form">
+		<div class="field">
+			<div class="ui left icon input">
+				<i class="checked checkbox icon"></i>
+				<input type="text" placeholder="Event" ng-model="selectEvent.concise">
+			</div>
+		</div>
+		<div class="field">
+			<div class="ui left icon input">
+				<i class="calendar icon"></i>
+				<input type="text" placeholder="Date" id="datepicker2" ng-model="selectEvent.date">
+			</div>
+		</div>
+		<div class="field">
+			<div class="ui left icon input">
+				<i class="location icon"></i>
+				<input type="text" placeholder="Location" ng-model="selectEvent.location">
+			</div>
+		</div>
+		<div class="field">
+			<textarea class="eventDetails" ng-model="selectEvent.details"> </textarea>
+		</div>
+	</div>
+</div>
+<!-- end of sidebar -->

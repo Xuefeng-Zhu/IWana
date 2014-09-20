@@ -21,8 +21,9 @@ angular.module('myApp.controllers', ['firebase'])
     ])
     .controller('BuyCtrl', ["$scope", "$rootScope", "$firebase", "DuckduckImage",
         function($scope, $rootScope, $firebase, DuckduckImage) {
-            var buy = $firebase(ref.child("buy"));
-            $scope.items = buy.$asObject();
+        	$rootScope.selectedMenu = "buy";
+            $scope.items = $firebase(ref.child("buy")).$asArray();
+            // $scope.items = buy.$asObject();
             $scope.newItem = {};
 
             $scope.addItem = function() {
@@ -37,7 +38,7 @@ angular.module('myApp.controllers', ['firebase'])
                         },
                         onApprove: function() {
                         	$scope.newItem.pic = $scope.selectedPic;
-                        	$scope.items.$push($scope.newItem);
+                        	$scope.items.$add($scope.newItem);
                         	$scope.newItem = {};
                         }
                     })

@@ -20,7 +20,7 @@
           </div>
           <!-- menu -->
           <div class="ui attached vertical fluid labeled icon menu">
-            <a class="red item" href="#/buy">
+            <a class="blue item" href="#/buy" ng-class="{active: selectedMenu=='buy'}">
               <i class="cart icon"></i>
               Buy
             </a>
@@ -36,7 +36,7 @@
         </div>
         <!-- end of menu -->
       </div>
-      <div class="fourteen wide column">
+      <div class="fourteen wide column" ng-show="auth.user">
         <div ng-view></div>
       </div>
     </div>
