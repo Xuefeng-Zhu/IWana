@@ -13,5 +13,6 @@ angular.module('myApp', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/buy', {templateUrl: 'partials/buy.html', controller: 'BuyCtrl'});
   $routeProvider.when('/sell', {templateUrl: 'partials/sell.html', controller: 'SellCtrl'});
-  $routeProvider.otherwise({redirectTo: '/buy'});
+  $routeProvider.when('/user', {templateUrl: 'partials/user.html', controller: 'UserCtrl'});
+  $routeProvider.otherwise({redirectTo: '/user'});
 }]);

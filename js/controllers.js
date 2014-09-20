@@ -23,8 +23,8 @@ angular.module('myApp.controllers', ['firebase'])
         function($scope, $rootScope, $firebase, DuckduckImage) {
             $rootScope.selectedMenu = "buy";
             $scope.items = $firebase(ref.child("buy")).$asArray();
-            // $scope.items = buy.$asObject();
             $scope.newItem = {};
+
 
             $scope.addItem = function() {
                 $('#buy')
@@ -38,6 +38,7 @@ angular.module('myApp.controllers', ['firebase'])
                         },
                         onApprove: function() {
                             $scope.newItem.pic = $scope.selectedPic;
+                            $scope.newItem.user = $rootScope.auth.user.id;
                             $scope.items.$add($scope.newItem);
                             $scope.newItem = {};
                         }
@@ -69,8 +70,69 @@ angular.module('myApp.controllers', ['firebase'])
                             $scope.pics.push(topics[i]["Icon"]["URL"]);
                         }
                     }
-                    console.log($scope.pics);
                 })
             }
+        }
+    ])
+    .controller('SellCtrl', ["$scope", "$rootScope", "$firebase", "DuckduckImage",
+        function($scope, $rootScope, $firebase, DuckduckImage) {
+            $rootScope.selectedMenu = "sell";
+            $scope.items = $firebase(ref.child("sell")).$asArray();
+            $scope.newItem = {};
+
+            $scope.addItem = function() {
+                $('#sell')
+                    .modal('setting', {
+                        closable: true,
+                        onDeny: function() {
+                            $scope.newItem = {};
+                        },
+                        onHidden: function() {
+                            $scope.newItem = {};
+                        },
+                        onApprove: function() {
+                            $scope.newItem.pic = $scope.selectedPic;
+                            $scope.newItem.user = $rootScope.auth.user.id;
+                            $scope.items.$add($scope.newItem);
+                            $scope.newItem = {};
+                        }
+                    })
+                    .modal('show');
+            };
+
+            $scope.selectedImage = function(pic) {
+                $scope.selectedPic = pic;
+            };
+
+            $scope.selectItem = function(item) {
+                $scope.selectedItem = item;
+
+                $('.overlay.sidebar').sidebar({
+                    overlay: true
+                }).sidebar('toggle');
+            };
+
+            $scope.$watch("newItem.name", loadImages);
+
+            function loadImages() {
+                DuckduckImage.query($scope.newItem.name).success(function(data) {
+                    var topics = data["RelatedTopics"];
+                    $scope.pics = []
+                    for (var i in topics) {
+                        if (topics[i]["Icon"] && $scope.pics.indexOf(topics[i]["Icon"]["URL"]) == -1) {
+                            $scope.pics.push(topics[i]["Icon"]["URL"]);
+                        }
+                    }
+                })
+            }
+        }
+    ])
+    .controller('UserCtrl', ["$scope", "$rootScope", "$firebase",
+        function($scope, $rootScope, $firebase) {
+            $rootScope.selectedMenu = "user";
+            var userId = $rootScope.auth.user.id;
+            userSyn = $firebase(ref.child("user/" + userId));
+            $scope.user = userSyn.$asObject();
+
         }
     ]);

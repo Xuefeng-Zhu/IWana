@@ -24,13 +24,13 @@
               <i class="cart icon"></i>
               Buy
             </a>
-            <a class="teal item" href="#/sell">
+            <a class="teal item" href="#/sell" ng-class="{active: selectedMenu=='sell'}">
               <i class="bullhorn icon"></i>
               Sell
             </a>
-            <a class="green item" href="#/messages">
-              <i class="mail icon"></i>
-              Messages
+            <a class="red item" href="#/messages" ng-class="{active: selectedMenu=='user'}">
+              <i class="user icon"></i>
+              Personal Info
             </a>
           </div>
         </div>
