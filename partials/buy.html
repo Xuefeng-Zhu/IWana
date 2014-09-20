@@ -15,3 +15,66 @@
 		</div>
 	</div>
 </div>
+
+<!-- item -->
+<div class="ui four items">
+	<div class="item" ng-repeat="item in items" style="min-height:300px">
+		<div class="ui small image">
+			<img src="https://duckduckgo.com/i/1a5d2522.png">
+		</div>
+		<div class="content">
+			<div class="meta">$500</div>
+			<div class="name">Iphone</div>
+			<p class="description">dsds.</p>
+		</div>
+	</div>
+</div>
+<!-- end of item -->
+
+<!-- I Wana Buy Modal -->
+<div class="ui basic modal" id="buy">
+	<i class="close icon"></i>
+	<div class="header">
+		I Wana Buy
+	</div>
+	<div class="ui form segment">
+		<div class="ui two fields">
+			<div class="field">
+				<div class="ui left icon input">
+					<i class="gift icon"></i>
+					<input type="text" placeholder="Name the item you want to buy" id="datepicker2" ng-model="newItem.name">
+				</div>
+			</div>
+			<div class="field">
+				<div class="ui left icon input">
+					<i class="payment icon"></i>
+					<input type="text" placeholder="Price you are willing to pay" ng-model="newItem.price">
+				</div>
+			</div>
+		</div>
+		<div class="field">
+			<div class="ui two column grid">
+				<div class="column">
+					<textarea class="eventDetails" ng-model="newItem.description"> </textarea>
+				</div>
+				<div class="column">
+					<div class="ui segment" style="height: 12em">
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="actions">
+		<div class="two fluid ui buttons">
+			<div class="ui positive labeled icon button">
+				Yes
+				<i class="checkmark icon"></i>
+			</div>
+			<div class="ui negative right labeled icon button">
+				<i class="remove icon"></i>
+				No
+			</div>
+		</div>
+	</div>
+</div>
