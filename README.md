@@ -7,6 +7,9 @@ Differnt than other online market, IWana is online market built for buyers. IWan
 + Buyers also can publish items for sale
 + System will find the items with matching descriptions from Sellers and Buyers, and notify both buyers and sellers (*future work*)
 
+## Other 
+Server side code is avaible at [here](https://github.com/Xuefeng-Zhu/IWana-server)
+
 ## Credit
 + [Angular](https://angularjs.org/)  
 + [angular-debounce](https://github.com/shahata/angular-debounce)
